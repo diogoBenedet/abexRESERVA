@@ -65,7 +65,11 @@
           <i data-feather="bus" class="w-8 h-8"></i>
           <h1 class="text-2xl font-bold">Mobilidade Urbana</h1>
         </div>
-        <div class="flex space-x-4">
+	        <div class="flex space-x-4">
+	          <!-- Botão de Alternância de Tema -->
+	          <button id="theme-toggle" class="p-2 rounded-full hover:bg-yellow-600 transition" title="Alternar Tema">
+	            <i data-feather="moon" class="w-6 h-6"></i>
+	          </button>
           <button class="p-2 rounded-full hover:bg-yellow-600 transition">
             <i data-feather="star" class="w-6 h-6"></i>
           </button>
@@ -162,28 +166,43 @@
       feather.replace();
     </script>
 
-    <script>
-      // Script de inicialização do tema
-      function applyTheme(isDark) {
-        const html = document.documentElement;
-        if (isDark) {
-          html.classList.add("dark");
-          html.classList.remove("light");
-        } else {
-          html.classList.remove("dark");
-          html.classList.add("light");
-        }
-        feather.replace();
-      }
-
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      let isDark =
-        savedTheme === "dark" || (savedTheme === null && prefersDark);
-      applyTheme(isDark);
-    </script>
+	    <script>
+	      // Função para aplicar o tema
+	      function applyTheme(isDark) {
+	        const html = document.documentElement;
+	        const toggleButton = document.getElementById('theme-toggle');
+	        if (isDark) {
+	          html.classList.add('dark');
+	          html.classList.remove('light');
+	          if (toggleButton) {
+	            toggleButton.innerHTML = '<i data-feather="sun" class="w-6 h-6"></i>'; // Ícone Sol
+	          }
+	        } else {
+	          html.classList.remove('dark');
+	          html.classList.add('light');
+	          if (toggleButton) {
+	            toggleButton.innerHTML = '<i data-feather="moon" class="w-6 h-6"></i>'; // Ícone Lua
+	          }
+	        }
+	        feather.replace();
+	      }
+	
+	      // 1. Inicializar o tema
+	      const savedTheme = localStorage.getItem('theme');
+	      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	      let isDark = savedTheme === 'dark' || (savedTheme === null && prefersDark);
+	      applyTheme(isDark);
+	
+	      // 2. Lógica do botão de alternância
+	      const toggleButton = document.getElementById('theme-toggle');
+	      if (toggleButton) {
+	        toggleButton.addEventListener('click', () => {
+	          isDark = !isDark;
+	          applyTheme(isDark);
+	          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	        });
+	      }
+	    </script>
   </body>
 </html>
 

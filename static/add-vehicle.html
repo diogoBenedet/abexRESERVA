@@ -16,209 +16,418 @@
     <style>
       /* Estilos para o tema escuro */
       .dark .bg-yellow-50 {
-        background-color: #1a202c; /* Cinza escuro */
+        background-color: #1a202c;
       }
       .dark .bg-white {
         background-color: #2d3748;
       }
       .dark .text-yellow-800 {
-        color: #f7fafc; /* Branco */
+        color: #f7fafc;
       }
       .dark .text-yellow-600 {
-        color: #a0aec0; /* Cinza claro */
+        color: #a0aec0;
       }
       .dark .border-yellow-200 {
-        border-color: #4a5568; /* Cinza escuro */
+        border-color: #4a5568;
       }
       .dark .placeholder-gray-500::placeholder {
         color: #a0aec0;
       }
+
+      /* Animações personalizadas */
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-slide-in-up {
+        animation: slideInUp 0.6s ease-out;
+      }
+
+      /* Card moderno */
+      .card-modern {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .card-modern:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .dark .card-modern {
+        background: #2d3748;
+      }
+
+      /* Input moderno */
+      .input-modern {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 2px solid #fef3c7;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .input-modern:focus {
+        outline: none;
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+      }
+
+      .dark .input-modern {
+        background-color: rgba(45, 55, 72, 0.8);
+        border-color: #4a5568;
+        color: #f7fafc;
+      }
+
+      .dark .input-modern:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+      }
+
+      /* Botão moderno */
+      .btn-primary {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 24px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(245, 158, 11, 0.4);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      /* Tabela moderna */
+      .table-modern {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark .table-modern {
+        background: #2d3748;
+      }
+
+      .table-modern thead {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+      }
+
+      .table-modern tbody tr {
+        border-bottom: 1px solid #fef3c7;
+        transition: all 0.3s ease;
+      }
+
+      .dark .table-modern tbody tr {
+        border-bottom-color: #4a5568;
+      }
+
+      .table-modern tbody tr:hover {
+        background-color: #fef3c7;
+      }
+
+      .dark .table-modern tbody tr:hover {
+        background-color: #4a5568;
+      }
+
+      /* Search container */
+      .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 16px;
+        color: #f59e0b;
+        pointer-events: none;
+      }
+
+      .search-input {
+        padding-left: 48px;
+      }
+
+      /* Header gradient */
+      .header-gradient {
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      }
+
+      .dark .header-gradient {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      }
+
+      /* Status badge */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .status-ativo {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+
+      .dark .status-ativo {
+        background-color: #064e3b;
+        color: #86efac;
+      }
+
+      .status-inativo {
+        background-color: #fee2e2;
+        color: #7f1d1d;
+      }
+
+      .dark .status-inativo {
+        background-color: #7f1d1d;
+        color: #fca5a5;
+      }
+
+      .status-manutencao {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .dark .status-manutencao {
+        background-color: #78350f;
+        color: #fcd34d;
+      }
     </style>
   </head>
-  <body class="bg-yellow-50 min-h-screen flex flex-col">
+  <body class="bg-yellow-50 dark:bg-gray-900 min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-yellow-500 text-white shadow-lg">
-      <div
-        class="container mx-auto px-4 py-3 flex justify-between items-center"
-      >
-        <div class="flex items-center space-x-2">
-          <i data-feather="truck" class="w-8 h-8"></i>
-          <h1 class="text-2xl font-bold" id="formTitle">Gerenciar Frota</h1>
+    <header class="header-gradient text-white shadow-lg sticky top-0 z-40">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <div class="bg-white/20 backdrop-blur-sm p-2 rounded-xl">
+            <i data-feather="truck" class="w-7 h-7"></i>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold">Gerenciar Frota</h1>
+            <p class="text-xs opacity-90">Administre os ônibus da frota</p>
+          </div>
         </div>
-        <div class="flex space-x-4">
-          <button
-            onclick="window.location.href='dashboard.html'"
-            class="p-2 rounded-full hover:bg-yellow-600 transition"
-            title="Voltar para Dashboard"
-          >
-            <i data-feather="arrow-left" class="w-6 h-6"></i>
-          </button>
-          <!-- <button
-            onclick="logout()"
-            class="p-2 rounded-full hover:bg-yellow-600 transition"
-            title="Sair"
-          >
-            <i data-feather="log-out" class="w-6 h-6"></i>
-          </button> -->
-        </div>
+        <button
+          onclick="window.location.href='dashboard.html'"
+          class="p-2 rounded-full hover:bg-white/20 transition"
+          title="Voltar"
+        >
+          <i data-feather="arrow-left" class="w-6 h-6"></i>
+        </button>
       </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 flex-grow">
-      <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden p-8">
-        <h2 class="text-2xl font-bold text-yellow-800 dark:text-white mb-6 text-center" id="formSubtitle">
-          Cadastro de Novo Veículo
-        </h2>
-        <form id="vehicleForm">
-          <input type="hidden" id="vehicleId" name="vehicleId" value="">
-          
-          <div class="mb-4">
-            <label for="plate" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Placa</label>
-            <input
-              type="text"
-              id="plate"
-              name="plate"
-              required
-              maxlength="10"
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-              placeholder="Ex: ABC-1234"
-            />
-          </div>
-          
-          <div class="mb-4">
-            <label for="brand" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Marca</label>
-            <input
-              type="text"
-              id="brand"
-              name="brand"
-              required
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-              placeholder="Ex: Mercedes-Benz"
-            />
-          </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Formulário de Cadastro -->
+        <div class="lg:col-span-1 animate-slide-in-up">
+          <div class="card-modern p-8">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" id="formTitle">
+              Novo Veículo
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Preencha os dados para adicionar um novo ônibus à frota</p>
+            
+            <form id="vehicleForm" class="space-y-4">
+              <input type="hidden" id="vehicleId" name="vehicleId" value="">
+              
+              <div>
+                <label for="plate" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Placa</label>
+                <input
+                  type="text"
+                  id="plate"
+                  name="plate"
+                  required
+                  maxlength="10"
+                  class="input-modern w-full"
+                  placeholder="Ex: ABC-1234"
+                />
+              </div>
+              
+              <div>
+                <label for="brand" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Marca</label>
+                <input
+                  type="text"
+                  id="brand"
+                  name="brand"
+                  required
+                  class="input-modern w-full"
+                  placeholder="Ex: Mercedes-Benz"
+                />
+              </div>
 
-          <div class="mb-4">
-            <label for="model" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Modelo</label>
-            <input
-              type="text"
-              id="model"
-              name="model"
-              required
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-              placeholder="Ex: O-500M"
-            />
-          </div>
-          
-          <div class="mb-4">
-            <label for="year" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Ano</label>
-            <input
-              type="number"
-              id="year"
-              name="year"
-              required
-              min="1900"
-              max="2100"
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-              placeholder="Ex: 2020"
-            />
-          </div>
+              <div>
+                <label for="model" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Modelo</label>
+                <input
+                  type="text"
+                  id="model"
+                  name="model"
+                  required
+                  class="input-modern w-full"
+                  placeholder="Ex: O-500M"
+                />
+              </div>
+              
+              <div>
+                <label for="year" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Ano</label>
+                <input
+                  type="number"
+                  id="year"
+                  name="year"
+                  required
+                  min="1900"
+                  max="2100"
+                  class="input-modern w-full"
+                  placeholder="Ex: 2020"
+                />
+              </div>
 
-          <div class="mb-4">
-            <label for="capacity" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Capacidade (Passageiros)</label>
-            <input
-              type="number"
-              id="capacity"
-              name="capacity"
-              required
-              min="1"
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-              placeholder="Ex: 45"
-            />
+              <div>
+                <label for="capacity" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Capacidade (Passageiros)</label>
+                <input
+                  type="number"
+                  id="capacity"
+                  name="capacity"
+                  required
+                  min="1"
+                  class="input-modern w-full"
+                  placeholder="Ex: 45"
+                />
+              </div>
+
+              <div>
+                <label for="status" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Status</label>
+                <select
+                  id="status"
+                  name="status"
+                  required
+                  class="input-modern w-full"
+                >
+                  <option value="ativo">Ativo (Pronto para Uso)</option>
+                  <option value="inativo">Inativo</option>
+                  <option value="manutencao">Manutenção</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="bus_line" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Linha do Ônibus</label>
+                <select
+                  id="bus_line"
+                  name="bus_line"
+                  class="input-modern w-full"
+                >
+                  <option value="">Selecione a Linha</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="driver_id" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Motorista</label>
+                <select
+                  id="driver_id"
+                  name="driver_id"
+                  class="input-modern w-full"
+                >
+                  <option value="">Selecione o Motorista</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                id="submitButton"
+                class="btn-primary w-full flex items-center justify-center gap-2"
+              >
+                <i data-feather="plus-circle" class="w-5 h-5"></i>
+                Adicionar Veículo
+              </button>
+
+              <button
+                type="button"
+                id="cancelEditButton"
+                class="w-full py-3 px-4 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition hidden"
+                onclick="resetForm()"
+              >
+                Cancelar Edição
+              </button>
+
+              <div id="message" class="mt-4 p-4 rounded-lg text-sm font-medium hidden"></div>
+            </form>
           </div>
-
-          <div class="mb-4">
-            <label for="status" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Status</label>
-            <select
-              id="status"
-              name="status"
-              required
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-            >
-              <option value="ativo">Ativo (Pronto para Uso)</option>
-              <option value="inativo">Inativo</option>
-              <option value="manutencao">Manutenção</option>
-            </select>
-          </div>
-
-          <div class="mb-4">
-            <label for="bus_line" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Linha do Ônibus</label>
-            <select
-              id="bus_line"
-              name="bus_line"
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-            >
-              <option value="">Selecione a Linha</option>
-            </select>
-          </div>
-
-          <div class="mb-6">
-            <label for="driver_id" class="block text-sm font-medium text-yellow-800 dark:text-yellow-600 mb-1">Motorista</label>
-            <select
-              id="driver_id"
-              name="driver_id"
-              class="w-full px-4 py-2 border border-yellow-200 dark:border-gray-600 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-white placeholder-gray-500"
-            >
-              <option value="">Selecione o Motorista</option>
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            id="submitButton"
-            class="w-full py-3 px-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-          >
-            Adicionar Veículo
-          </button>
-          <button
-            type="button"
-            id="cancelEditButton"
-            class="w-full py-3 px-4 mt-2 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 hidden"
-            onclick="resetForm()"
-          >
-            Cancelar Edição
-          </button>
-        </form>
-        <p id="message" class="mt-4 text-center text-sm font-medium hidden"></p>
-      </div>
-
-      <!-- Lista de Veículos Cadastrados -->
-      <div class="max-w-6xl mx-auto mt-8">
-        <h3 class="text-xl font-bold text-yellow-800 dark:text-white mb-4 text-center">
-          Frota Cadastrada
-        </h3>
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-md">
-            <thead>
-              <tr class="bg-yellow-500 text-white">
-                <th class="py-3 px-4 text-left">Placa</th>
-                <th class="py-3 px-4 text-left hidden sm:table-cell">Marca</th>
-                <th class="py-3 px-4 text-left hidden sm:table-cell">Modelo</th>
-                <th class="py-3 px-4 text-left hidden md:table-cell">Ano</th>
-                <th class="py-3 px-4 text-left hidden lg:table-cell">Capacidade</th>
-                <th class="py-3 px-4 text-left hidden xl:table-cell">Linha</th>
-                <th class="py-3 px-4 text-left hidden xl:table-cell">Motorista</th>
-                <th class="py-3 px-4 text-left">Status</th>
-                <th class="py-3 px-4 text-center">Ações</th>
-              </tr>
-            </thead>
-            <tbody id="vehiclesTableBody">
-              <!-- Os veículos serão inseridos aqui dinamicamente -->
-            </tbody>
-          </table>
         </div>
-        <div id="noVehiclesMessage" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 px-4 py-3 rounded-lg text-center mt-4 hidden">
-          Nenhum veículo cadastrado ainda.
+
+        <!-- Lista de Veículos -->
+        <div class="lg:col-span-2 animate-slide-in-up" style="animation-delay: 0.1s;">
+          <!-- Barra de Pesquisa -->
+          <div class="mb-6">
+            <div class="search-container">
+              <i data-feather="search" class="search-icon w-5 h-5"></i>
+              <input
+                type="text"
+                id="searchPlate"
+                placeholder="Pesquisar por placa..."
+                class="input-modern search-input w-full"
+              />
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-2">Digite a placa para filtrar veículos cadastrados</p>
+          </div>
+
+          <!-- Tabela de Veículos -->
+          <div class="table-modern overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr>
+                  <th class="py-4 px-6 text-left font-semibold">Placa</th>
+                  <th class="py-4 px-6 text-left font-semibold hidden sm:table-cell">Marca</th>
+                  <th class="py-4 px-6 text-left font-semibold hidden sm:table-cell">Modelo</th>
+                  <th class="py-4 px-6 text-left font-semibold hidden md:table-cell">Ano</th>
+                  <th class="py-4 px-6 text-left font-semibold hidden lg:table-cell">Capacidade</th>
+                  <th class="py-4 px-6 text-left font-semibold hidden xl:table-cell">Linha</th>
+                  <th class="py-4 px-6 text-left font-semibold">Status</th>
+                  <th class="py-4 px-6 text-center font-semibold">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="vehiclesTableBody">
+                <!-- Os veículos serão inseridos aqui dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mensagem de Nenhum Veículo -->
+          <div id="noVehiclesMessage" class="bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-gray-700 dark:to-gray-600 border-l-4 border-yellow-500 text-gray-800 dark:text-gray-200 px-6 py-4 rounded-lg text-center mt-6 hidden">
+            <i data-feather="inbox" class="w-8 h-8 mx-auto mb-2 text-yellow-600 dark:text-yellow-400"></i>
+            <p class="font-semibold">Nenhum veículo cadastrado</p>
+            <p class="text-sm opacity-75">Comece adicionando um novo ônibus usando o formulário ao lado</p>
+          </div>
+
+          <!-- Mensagem de Nenhum Resultado na Pesquisa -->
+          <div id="noSearchResultsMessage" class="bg-gradient-to-br from-blue-100 to-blue-50 dark:from-gray-700 dark:to-gray-600 border-l-4 border-blue-500 text-gray-800 dark:text-gray-200 px-6 py-4 rounded-lg text-center mt-6 hidden">
+            <i data-feather="search" class="w-8 h-8 mx-auto mb-2 text-blue-600 dark:text-blue-400"></i>
+            <p class="font-semibold">Nenhum veículo encontrado</p>
+            <p class="text-sm opacity-75">Tente outra placa ou limpe a busca</p>
+          </div>
         </div>
       </div>
     </main>
@@ -226,10 +435,10 @@
     <script>
       feather.replace();
 
-      // Variável para armazenar o ID do veículo em edição
       let editingVehicleId = null;
+      let allVehicles = [];
 
-      // Função de Logout (reutilizada do dashboard)
+      // Função de Logout
       async function logout() {
         try {
           await fetch("/api/logout", {
@@ -239,11 +448,11 @@
           window.location.href = "index.html";
         } catch (error) {
           console.error("Erro ao fazer logout:", error);
-          window.location.href = "index.html"; // Redireciona mesmo em caso de erro
+          window.location.href = "index.html";
         }
       }
 
-      // Função para verificar o status de admin e redirecionar se não for
+      // Função para verificar o status de admin
       async function checkAdminStatus() {
         try {
           const response = await fetch("/api/profile", {
@@ -252,19 +461,17 @@
           });
 
           if (response.status === 401) {
-            // Não autenticado
             window.location.href = "login.html";
             return;
           }
 
           const user = await response.json();
           if (user.role !== 'admin') {
-            // Não é admin, redireciona para o dashboard
             window.location.href = "dashboard.html";
           }
         } catch (error) {
           console.error("Erro ao verificar status de admin:", error);
-          window.location.href = "login.html"; // Em caso de erro, força o login
+          window.location.href = "login.html";
         }
       }
 
@@ -280,8 +487,8 @@
             throw new Error('Erro ao carregar veículos');
           }
 
-          const vehicles = await response.json();
-          displayVehicles(vehicles);
+          allVehicles = await response.json();
+          displayVehicles(allVehicles);
         } catch (error) {
           console.error('Erro ao carregar veículos:', error);
           document.getElementById('vehiclesTableBody').innerHTML = '';
@@ -293,74 +500,103 @@
       function displayVehicles(vehicles) {
         const vehiclesTableBody = document.getElementById('vehiclesTableBody');
         const noVehiclesMessage = document.getElementById('noVehiclesMessage');
+        const noSearchResultsMessage = document.getElementById('noSearchResultsMessage');
         vehiclesTableBody.innerHTML = '';
         
         if (!vehicles || vehicles.length === 0) {
           noVehiclesMessage.classList.remove('hidden');
+          noSearchResultsMessage.classList.add('hidden');
           return;
         }
 
         noVehiclesMessage.classList.add('hidden');
+        noSearchResultsMessage.classList.add('hidden');
 
         vehicles.forEach(vehicle => {
-          let statusColor = '';
+          let statusClass = '';
           let statusText = '';
           switch (vehicle.status) {
             case 'ativo':
-              statusColor = 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
+              statusClass = 'status-ativo';
               statusText = 'Ativo';
               break;
             case 'inativo':
-              statusColor = 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
+              statusClass = 'status-inativo';
               statusText = 'Inativo';
               break;
             case 'manutencao':
-              statusColor = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300';
+              statusClass = 'status-manutencao';
               statusText = 'Manutenção';
               break;
             default:
-              statusColor = 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300';
+              statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300';
               statusText = vehicle.status;
           }
 
           const row = vehiclesTableBody.insertRow();
-          row.className = 'border-b border-yellow-100 dark:border-gray-700 hover:bg-yellow-50 dark:hover:bg-gray-700 transition';
+          row.className = 'transition hover:bg-opacity-50';
           
           row.innerHTML = `
-            <td class="py-3 px-4 font-semibold text-yellow-800 dark:text-white">${vehicle.plate}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden sm:table-cell">${vehicle.brand}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden sm:table-cell">${vehicle.model}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden md:table-cell">${vehicle.year}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden lg:table-cell">${vehicle.capacity}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden xl:table-cell">${vehicle.bus_line || '-'}</td>
-            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 hidden xl:table-cell">${vehicle.driver_name || '-'}</td>
-            <td class="py-3 px-4">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+            <td class="py-4 px-6 text-gray-900 dark:text-white font-bold font-mono">${vehicle.plate}</td>
+            <td class="py-4 px-6 text-gray-700 dark:text-gray-300 hidden sm:table-cell text-sm">${vehicle.brand}</td>
+            <td class="py-4 px-6 text-gray-700 dark:text-gray-300 hidden sm:table-cell text-sm">${vehicle.model}</td>
+            <td class="py-4 px-6 text-gray-700 dark:text-gray-300 hidden md:table-cell text-sm">${vehicle.year}</td>
+            <td class="py-4 px-6 text-gray-700 dark:text-gray-300 hidden lg:table-cell text-sm">${vehicle.capacity} pessoas</td>
+            <td class="py-4 px-6 text-gray-700 dark:text-gray-300 hidden xl:table-cell text-sm">${vehicle.bus_line || '-'}</td>
+            <td class="py-4 px-6">
+              <span class="status-badge ${statusClass}">
                 ${statusText}
               </span>
             </td>
-            <td class="py-3 px-4 text-center">
-              <button
-                onclick="editVehicle('${vehicle.id}')"
-                class="p-1 text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg transition mr-2"
-                title="Editar veículo"
-              >
-                <i data-feather="edit" class="w-5 h-5"></i>
-              </button>
-              <button
-                onclick="deleteVehicle('${vehicle.id}')"
-                class="p-1 text-red-500 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg transition"
-                title="Remover veículo"
-              >
-                <i data-feather="trash-2" class="w-5 h-5"></i>
-              </button>
+            <td class="py-4 px-6 text-center">
+              <div class="flex justify-center gap-2">
+                <button
+                  onclick="editVehicle('${vehicle.id}')"
+                  class="p-2 text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg transition"
+                  title="Editar veículo"
+                >
+                  <i data-feather="edit" class="w-5 h-5"></i>
+                </button>
+                <button
+                  onclick="deleteVehicle('${vehicle.id}')"
+                  class="p-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg transition"
+                  title="Remover veículo"
+                >
+                  <i data-feather="trash-2" class="w-5 h-5"></i>
+                </button>
+              </div>
             </td>
           `;
         });
 
-        // Atualiza os ícones do Feather
         feather.replace();
       }
+
+      // Função para filtrar veículos por placa
+      function filterVehiclesByPlate(plate) {
+        if (!plate.trim()) {
+          displayVehicles(allVehicles);
+          return;
+        }
+
+        const filtered = allVehicles.filter(vehicle => 
+          vehicle.plate.toLowerCase().includes(plate.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+          document.getElementById('vehiclesTableBody').innerHTML = '';
+          document.getElementById('noSearchResultsMessage').classList.remove('hidden');
+          document.getElementById('noVehiclesMessage').classList.add('hidden');
+        } else {
+          document.getElementById('noSearchResultsMessage').classList.add('hidden');
+          displayVehicles(filtered);
+        }
+      }
+
+      // Listener para o campo de pesquisa
+      document.getElementById('searchPlate').addEventListener('input', function(e) {
+        filterVehiclesByPlate(e.target.value);
+      });
 
       // Função para preencher o formulário para edição
       async function editVehicle(vehicleId) {
@@ -376,7 +612,6 @@
 
           const vehicle = await response.json();
           
-          // Preenche o formulário
           document.getElementById('vehicleId').value = vehicle.id;
           document.getElementById('plate').value = vehicle.plate;
           document.getElementById('brand').value = vehicle.brand;
@@ -385,7 +620,6 @@
           document.getElementById('capacity').value = vehicle.capacity;
           document.getElementById('status').value = vehicle.status;
           
-          // Preencher linha e motorista se existirem
           if (vehicle.bus_line) {
             document.getElementById('bus_line').value = vehicle.bus_line;
           }
@@ -393,14 +627,14 @@
             document.getElementById('driver_id').value = vehicle.driver_id;
           }
 
-          // Altera o estado do formulário para edição
           editingVehicleId = vehicle.id;
-          document.getElementById('formSubtitle').textContent = 'Editar Veículo';
+          document.getElementById('formTitle').textContent = 'Editar Veículo';
           document.getElementById('submitButton').textContent = 'Salvar Alterações';
+          document.getElementById('submitButton').innerHTML = '<i data-feather="save" class="w-5 h-5"></i> Salvar Alterações';
           document.getElementById('cancelEditButton').classList.remove('hidden');
           document.getElementById('message').classList.add('hidden');
           
-          // Rola para o topo para focar no formulário
+          feather.replace();
           window.scrollTo({ top: 0, behavior: 'smooth' });
 
         } catch (error) {
@@ -409,15 +643,19 @@
         }
       }
 
-      // Função para resetar o formulário para o estado de adição
+      // Função para resetar o formulário
       function resetForm() {
         editingVehicleId = null;
         document.getElementById('vehicleForm').reset();
         document.getElementById('vehicleId').value = '';
-        document.getElementById('formSubtitle').textContent = 'Cadastro de Novo Veículo';
+        document.getElementById('formTitle').textContent = 'Novo Veículo';
         document.getElementById('submitButton').textContent = 'Adicionar Veículo';
+        document.getElementById('submitButton').innerHTML = '<i data-feather="plus-circle" class="w-5 h-5"></i> Adicionar Veículo';
         document.getElementById('cancelEditButton').classList.add('hidden');
         document.getElementById('message').classList.add('hidden');
+        document.getElementById('searchPlate').value = '';
+        filterVehiclesByPlate('');
+        feather.replace();
       }
 
       // Função para deletar veículo
@@ -433,22 +671,21 @@
           });
 
           const messageElement = document.getElementById('message');
-          messageElement.classList.remove('hidden', 'text-green-600', 'text-red-600');
+          messageElement.classList.remove('hidden', 'text-green-600', 'text-red-600', 'bg-green-100', 'bg-red-100');
 
           if (response.ok) {
-            // Recarrega a lista de veículos
             loadVehicles();
             
-            messageElement.textContent = 'Veículo removido com sucesso!';
-            messageElement.classList.add('text-green-600');
+            messageElement.textContent = '✓ Veículo removido com sucesso!';
+            messageElement.classList.add('text-green-600', 'bg-green-100', 'border-l-4', 'border-green-500');
             
             setTimeout(() => {
               messageElement.classList.add('hidden');
             }, 3000);
           } else {
             const data = await response.json();
-            messageElement.textContent = data.error || 'Erro ao remover veículo.';
-            messageElement.classList.add('text-red-600');
+            messageElement.textContent = '✗ ' + (data.error || 'Erro ao remover veículo.');
+            messageElement.classList.add('text-red-600', 'bg-red-100', 'border-l-4', 'border-red-500');
           }
         } catch (error) {
           console.error('Erro ao remover veículo:', error);
@@ -456,7 +693,7 @@
         }
       }
 
-      // Função para enviar o formulário (Adicionar ou Editar)
+      // Função para enviar o formulário
       document.getElementById('vehicleForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -472,7 +709,7 @@
         const messageElement = document.getElementById('message');
 
         messageElement.classList.add('hidden');
-        messageElement.classList.remove('text-green-600', 'text-red-600');
+        messageElement.classList.remove('text-green-600', 'text-red-600', 'bg-green-100', 'bg-red-100');
 
         const method = vehicleId ? 'PUT' : 'POST';
         const url = vehicleId ? `/api/admin/vehicles/${vehicleId}` : '/api/admin/vehicles';
@@ -490,25 +727,25 @@
           const data = await response.json();
 
           if (response.ok) {
-            messageElement.textContent = data.message;
-            messageElement.classList.add('text-green-600');
+            messageElement.textContent = '✓ ' + data.message;
+            messageElement.classList.add('text-green-600', 'bg-green-100', 'border-l-4', 'border-green-500');
             
-            resetForm(); // Limpa e reseta o formulário
-            loadVehicles(); // Recarrega a lista de veículos
+            resetForm();
+            loadVehicles();
           } else {
-            messageElement.textContent = data.error || `Erro ao ${vehicleId ? 'editar' : 'adicionar'} veículo.`;
-            messageElement.classList.add('text-red-600');
+            messageElement.textContent = '✗ ' + (data.error || `Erro ao ${vehicleId ? 'editar' : 'adicionar'} veículo.`);
+            messageElement.classList.add('text-red-600', 'bg-red-100', 'border-l-4', 'border-red-500');
           }
         } catch (error) {
           console.error('Erro ao enviar formulário:', error);
-          messageElement.textContent = 'Erro de conexão com o servidor.';
-          messageElement.classList.add('text-red-600');
+          messageElement.textContent = '✗ Erro de conexão com o servidor.';
+          messageElement.classList.add('text-red-600', 'bg-red-100', 'border-l-4', 'border-red-500');
         } finally {
           messageElement.classList.remove('hidden');
         }
       });
 
-      // Função para carregar as linhas de ônibus e preencher o dropdown
+      // Função para carregar as linhas de ônibus
       async function loadBusLines() {
         try {
           const response = await fetch('/api/routes', {
@@ -523,7 +760,6 @@
           const busLines = await response.json();
           const selectElement = document.getElementById('bus_line');
           
-          // Limpa as opções existentes, mantendo a primeira (Selecione a Linha)
           selectElement.innerHTML = '<option value="">Selecione a Linha</option>';
 
           busLines.forEach(line => {
@@ -539,7 +775,7 @@
         }
       }
 
-      // Função para carregar os motoristas e preencher o dropdown
+      // Função para carregar os motoristas
       async function loadDrivers() {
         try {
           const response = await fetch('/api/admin/drivers', {
@@ -554,7 +790,6 @@
           const drivers = await response.json();
           const selectElement = document.getElementById('driver_id');
           
-          // Limpa as opções existentes, mantendo a primeira (Selecione o Motorista)
           selectElement.innerHTML = '<option value="">Selecione o Motorista</option>';
 
           drivers.forEach(driver => {
@@ -572,9 +807,9 @@
       // Inicialização
       document.addEventListener('DOMContentLoaded', function() {
         checkAdminStatus();
-        loadBusLines(); // Carrega as linhas de ônibus
-        loadDrivers(); // Carrega os motoristas
-        loadVehicles(); // Carrega a lista de veículos ao carregar a página
+        loadBusLines();
+        loadDrivers();
+        loadVehicles();
       });
     </script>
   </body>
